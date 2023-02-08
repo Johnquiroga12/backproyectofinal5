@@ -1,5 +1,4 @@
 package com.proyecto.parking_cam.modelo;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +22,6 @@ public class Persona implements Serializable {
     private String cedula;
     @Column(name = "correo")
     private String correo;
+    @Column(name = "tipo")
+    private String tipo;
 }

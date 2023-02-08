@@ -12,45 +12,45 @@ import java.util.List;
 
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/apiss")
 public class usuarioController {
     @Autowired
-    private UsuarioService ser;
+    private UsuarioService ususer;
 
-    @GetMapping("/do/listar")
+    @GetMapping("/usu/listar")
     public ResponseEntity<List<Usuario>> getAll() {
         try {
-            return new ResponseEntity<>(ser.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(ususer.findByAll(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @GetMapping("/do/search/{id}")
+    @GetMapping("/usu/search/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable("id") Integer id){
         try {
-            return  new ResponseEntity<>(ser.findById(id), HttpStatus.OK);
+            return  new ResponseEntity<>(ususer.findById(id), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
-    @PostMapping("/do/crear")
+    @PostMapping("/usu/crear")
     public ResponseEntity<Usuario> createReproducion(@RequestBody Usuario usuario){
         try {
-            return new ResponseEntity<>(ser.save(usuario), HttpStatus.CREATED);
+            return new ResponseEntity<>(ususer.save(usuario), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @DeleteMapping("/do/delete/{id}")
+    @DeleteMapping("/usu/delete/{id}")
     public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
         try {
-            ser.delete(id);
+            ususer.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataIntegrityViolationException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar al USUARIO");
@@ -59,20 +59,16 @@ public class usuarioController {
         }
     }
 
-    @PutMapping("/do/update/{id}")
+    @PutMapping("/usu/update/{id}")
     public ResponseEntity<Usuario> updateClient(@RequestBody Usuario empl, @PathVariable("id") Integer id){
-        Usuario ca =ser.findById(id);
+        Usuario ca =ususer.findById(id);
         if(ca == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-                ca.setNombre(empl.getNombre());
-                ca.setApellido(empl.getApellido());
-                ca.setCorreo(empl.getCorreo());
-                ca.setCedula(empl.getCedula());
                 ca.setRol(empl.getRol());
                 ca.setInstruccion(empl.getInstruccion());
-                return new ResponseEntity<>(ser.save(empl), HttpStatus.CREATED);
+                return new ResponseEntity<>(ususer.save(empl), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

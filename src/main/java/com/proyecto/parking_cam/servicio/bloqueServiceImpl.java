@@ -1,8 +1,6 @@
 package com.proyecto.parking_cam.servicio;
 import com.proyecto.parking_cam.modelo.Bloque;
-import com.proyecto.parking_cam.modelo.Guardia;
 import com.proyecto.parking_cam.repositoryo.BloqueRepository;
-import com.proyecto.parking_cam.repositoryo.GuardiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;

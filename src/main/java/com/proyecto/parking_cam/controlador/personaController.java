@@ -28,7 +28,6 @@ public class personaController {
         }
 
     }
-
     @GetMapping("/per/search/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") Integer id){
         try {
@@ -60,7 +59,6 @@ public class personaController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @PutMapping("/per/update/{id}")
     public ResponseEntity<Persona> updateClient(@RequestBody Persona empl, @PathVariable("id") Integer id){
         Persona ca =perser.findById(id);

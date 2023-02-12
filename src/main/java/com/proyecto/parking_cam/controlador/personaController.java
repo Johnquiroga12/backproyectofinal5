@@ -28,14 +28,6 @@ public class personaController {
         }
 
     }
-    @GetMapping("/per/{user}/{contra}")
-    public ResponseEntity<?> login(@PathVariable("user") String  user,@PathVariable("contra") String  contra){
-        try {
-            return new ResponseEntity<>(perser.findByCorreoAndContrasenia(user, contra), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @GetMapping("/per/search/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") Integer id){

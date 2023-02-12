@@ -26,7 +26,17 @@ public class usuarioController {
         }
 
     }
-
+    @RequestMapping(value = "/usu/{username}/{password}", method = RequestMethod.GET)
+    @ResponseBody
+    @CrossOrigin
+    public Usuario login(@PathVariable String username, @PathVariable String password){
+        return ususer.login(username, password);
+    }
+    @GetMapping("porUsername/{username}")
+    @ResponseBody
+    public boolean porUsername(@PathVariable String username){
+        return ususer.porUsername(username);
+    }
     @GetMapping("/usu/search/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable("id") Integer id){
         try {
@@ -63,6 +73,10 @@ public class usuarioController {
     public ResponseEntity<Usuario> updateClient(@RequestBody Usuario empl, @PathVariable("id") Integer id){
         Usuario ca =ususer.findById(id);
         if(ca == null){
+            ca.setPassword(empl.getPassword());
+            ca.setUsername(empl.getUsername());
+            ca.setRol(empl.getRol());
+            ca.setInstruccion(empl.getInstruccion());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {

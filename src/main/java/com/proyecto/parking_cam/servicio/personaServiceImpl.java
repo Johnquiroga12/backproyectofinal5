@@ -17,8 +17,4 @@ public class personaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
         return Repository;
     }
 
-    @Override
-    public Persona findByCorreoAndContrasenia(String correo, String contra) {
-        return Repository.findByCorreoAndContrasenia(correo,  contra);
-    }
 }

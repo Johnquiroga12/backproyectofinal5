@@ -22,6 +22,10 @@ public class Persona implements Serializable {
     private String cedula;
     @Column(name = "correo")
     private String correo;
+    @Column(name = "contrasenia")
+    private String contrasenia;
+
     @Column(name = "tipo")
+
     private String tipo;
 }

@@ -16,4 +16,9 @@ public class personaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
     public CrudRepository<Persona, Integer> getDao() {
         return Repository;
     }
+
+    @Override
+    public Persona findByCorreoAndContrasenia(String correo, String contra) {
+        return Repository.findByCorreoAndContrasenia(correo,  contra);
+    }
 }

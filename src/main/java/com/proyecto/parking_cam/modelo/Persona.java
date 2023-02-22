@@ -24,10 +24,16 @@ public class Persona implements Serializable {
     private String cedula;
     @Column(name = "correo")
     private String correo;
-    @Column(name = "direccinn")
-    private String direccion;
     @Column(name = "tipo")
     private String tipo;
+    @Column(name = "celular")
+    private String celular;
+    @Column(name = "n_emergencia")
+    private String n_emergencia;
+    @Column(name = "carrera")
+    private String carrera;
+    @Column(name = "jornada")
+    private String jornada;
 
     @JsonIgnore
     @OneToMany(mappedBy = "persona")

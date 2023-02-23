@@ -19,8 +19,8 @@ public class Usuario  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer id_usuario;
-    @Column(name = "username")
-    private String username;
+    //@Column(name = "username")
+    //private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "rol")
@@ -31,7 +31,7 @@ public class Usuario  implements Serializable {
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario")
-    private List<Registro> registro;
+   // @JsonIgnore
+    //@OneToMany(mappedBy = "usuario")
+    //private List<Registro> registro;
 }

@@ -23,8 +23,8 @@ public class Usuario  implements Serializable {
     private String password;
     @Column(name = "rol")
     private String rol;
-   // @Column(name = "instruccion")
-   // private String instruccion;
+    @Column(name = "instruccion")
+    private String instruccion;
     @OneToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;

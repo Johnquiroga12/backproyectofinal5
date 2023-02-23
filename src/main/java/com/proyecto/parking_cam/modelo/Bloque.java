@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,7 +19,15 @@ public class Bloque implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bloque")
     private Integer id_bloque;
-    @Column(name = "espacios")
-    private String espacio;
+    @Column(name = "plazas")
+    private String plazas;
+    
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "bloque")
+    private List<Registro> registro;
+    
+
+    
 
 }

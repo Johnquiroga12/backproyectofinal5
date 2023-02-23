@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +30,8 @@ public class Usuario  implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario")
+    private List<Registro> registro;
 }

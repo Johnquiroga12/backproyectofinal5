@@ -17,7 +17,7 @@ public class usuarioController {
     @Autowired
     private UsuarioService ususer;
 
-    @GetMapping("/usu/listar")
+    @GetMapping("/user/list")
     public ResponseEntity<List<Usuario>> getAll() {
         try {
             return new ResponseEntity<>(ususer.findByAll(), HttpStatus.OK);
@@ -47,7 +47,7 @@ public class usuarioController {
     }
 
 
-    @PostMapping("/usu/crear")
+    @PostMapping("/user/create")
     public ResponseEntity<Usuario> createReproducion(@RequestBody Usuario usuario){
         try {
             return new ResponseEntity<>(ususer.save(usuario), HttpStatus.CREATED);
@@ -57,7 +57,7 @@ public class usuarioController {
 
     }
 
-    @DeleteMapping("/usu/delete/{id}")
+    @DeleteMapping("/user/delete/{id}")
     public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
         try {
             ususer.delete(id);
@@ -69,7 +69,7 @@ public class usuarioController {
         }
     }
 
-    @PutMapping("/usu/update/{id}")
+    @PutMapping("/user/update/{id}")
     public ResponseEntity<Usuario> updateClient(@RequestBody Usuario empl, @PathVariable("id") Integer id){
         Usuario ca =ususer.findById(id);
         if(ca == null){

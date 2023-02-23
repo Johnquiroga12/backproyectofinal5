@@ -38,4 +38,12 @@ public class Persona implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "persona")
     private List<Usuario> usuario;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "persona")
+    private List<Vehiculo> vehiculo;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "persona")
+    private List<Registro> registro;
 }

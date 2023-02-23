@@ -58,7 +58,7 @@ public class RegController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+/*
     @PutMapping("/do/update/{id}")
     public ResponseEntity<Registro> updateClient(@RequestBody Registro empl, @PathVariable("id") Integer id){
         Registro ca =ser.findById(id);
@@ -79,5 +79,5 @@ public class RegController {
             }
         }
 
-    }
+    }*/
 }

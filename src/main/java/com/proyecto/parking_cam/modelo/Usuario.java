@@ -23,7 +23,9 @@ public class Usuario  implements Serializable {
     private String password;
     @Column(name = "rol")
     private String rol;
+   
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
 	public Integer getId_usuario() {

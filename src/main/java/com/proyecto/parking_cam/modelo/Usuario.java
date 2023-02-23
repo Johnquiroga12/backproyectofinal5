@@ -27,7 +27,7 @@ public class Usuario  implements Serializable {
     private String rol;
     @Column(name = "instruccion")
     private String instruccion;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
     

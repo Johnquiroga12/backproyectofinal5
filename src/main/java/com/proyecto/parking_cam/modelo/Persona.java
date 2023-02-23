@@ -24,7 +24,7 @@ public class Persona implements Serializable {
     private String cedula;
     @Column(name = "correo")
     private String correo;
-    @Column(name = "tipo")
+    @Column(name = "cargo")
     private String tipo;
     @Column(name = "celular")
     private String celular;
@@ -36,14 +36,14 @@ public class Persona implements Serializable {
     private String jornada;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "persona")
-    private List<Usuario> usuario;
+    @OneToOne(mappedBy = "persona")
+    private Usuario usuario;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "persona")
-    private List<Vehiculo> vehiculo;
+   // @JsonIgnore
+   // @OneToMany(mappedBy = "persona")
+   // private List<Vehiculo> vehiculo;
     
-    @JsonIgnore
-    @OneToMany(mappedBy = "persona")
-    private List<Registro> registro;
+    //@JsonIgnore
+   // @OneToMany(mappedBy = "persona")
+    //private List<Registro> registro;
 }

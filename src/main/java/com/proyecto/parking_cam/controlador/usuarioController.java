@@ -74,7 +74,6 @@ public class usuarioController {
         Usuario ca =ususer.findById(id);
         if(ca == null){
             ca.setPassword(empl.getPassword());
-            ca.setUsername(empl.getUsername());
             ca.setRol(empl.getRol());
             ca.setInstruccion(empl.getInstruccion());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

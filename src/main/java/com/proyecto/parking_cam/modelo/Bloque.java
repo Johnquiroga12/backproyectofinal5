@@ -26,6 +26,36 @@ public class Bloque implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "bloque")
     private List<Registro> registro;
+
+
+	public Integer getId_bloque() {
+		return id_bloque;
+	}
+
+
+	public void setId_bloque(Integer id_bloque) {
+		this.id_bloque = id_bloque;
+	}
+
+
+	public String getPlazas() {
+		return plazas;
+	}
+
+
+	public void setPlazas(String plazas) {
+		this.plazas = plazas;
+	}
+
+
+	public List<Registro> getRegistro() {
+		return registro;
+	}
+
+
+	public void setRegistro(List<Registro> registro) {
+		this.registro = registro;
+	}
     
 
     

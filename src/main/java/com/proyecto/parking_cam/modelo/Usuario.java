@@ -19,8 +19,6 @@ public class Usuario  implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer id_usuario;
-    //@Column(name = "username")
-    //private String username;
     @Column(name = "password")
     private String password;
     @Column(name = "rol")
@@ -30,8 +28,36 @@ public class Usuario  implements Serializable {
     @OneToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
+	public Integer getId_usuario() {
+		return id_usuario;
+	}
+	public void setId_usuario(Integer id_usuario) {
+		this.id_usuario = id_usuario;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getRol() {
+		return rol;
+	}
+	public void setRol(String rol) {
+		this.rol = rol;
+	}
+	public String getInstruccion() {
+		return instruccion;
+	}
+	public void setInstruccion(String instruccion) {
+		this.instruccion = instruccion;
+	}
+	public Persona getPersona() {
+		return persona;
+	}
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
     
-   // @JsonIgnore
-    //@OneToMany(mappedBy = "usuario")
-    //private List<Registro> registro;
+    
 }

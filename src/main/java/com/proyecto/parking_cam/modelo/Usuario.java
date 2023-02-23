@@ -23,8 +23,6 @@ public class Usuario  implements Serializable {
     private String password;
     @Column(name = "rol")
     private String rol;
-    @Column(name = "instruccion")
-    private String instruccion;
     @OneToOne
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     private Persona persona;
@@ -45,12 +43,6 @@ public class Usuario  implements Serializable {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
-	}
-	public String getInstruccion() {
-		return instruccion;
-	}
-	public void setInstruccion(String instruccion) {
-		this.instruccion = instruccion;
 	}
 	public Persona getPersona() {
 		return persona;

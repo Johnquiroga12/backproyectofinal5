@@ -12,79 +12,43 @@ import java.util.List;
 
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/apiss")
+@RequestMapping("/api")
 public class usuarioController {
     @Autowired
-    private UsuarioService ususer;
+    UsuarioService usuarioService;
 
-    @GetMapping("/user/list")
-    public ResponseEntity<List<Usuario>> getAll() {
-        try {
-            return new ResponseEntity<>(ususer.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
 
-    }
-    @RequestMapping(value = "/usu/{username}/{password}", method = RequestMethod.GET)
-    @ResponseBody
-    @CrossOrigin
-    public Usuario login(@PathVariable String username, @PathVariable String password){
-        return ususer.login(username, password);
-    }
-    @GetMapping("porUsername/{username}")
-    @ResponseBody
-    public boolean porUsername(@PathVariable String username){
-        return ususer.porUsername(username);
-    }
-    @GetMapping("/usu/search/{id}")
-    public ResponseEntity<Usuario> getById(@PathVariable("id") Integer id){
-        try {
-            return  new ResponseEntity<>(ususer.findById(id), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/listar")
+    public ResponseEntity< List<Usuario>> obtenerLista() {
+        return new ResponseEntity<>(usuarioService.findByAll(), HttpStatus.OK);
     }
 
-
-    @PostMapping("/user/create")
-    public ResponseEntity<Usuario> createReproducion(@RequestBody Usuario usuario){
-        try {
-            return new ResponseEntity<>(ususer.save(usuario), HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
+    @PostMapping("/crear")
+    public ResponseEntity<Usuario> crear(@RequestBody Usuario us){
+        return new ResponseEntity<>(usuarioService.save(us), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/user/delete/{id}")
-    public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
-        try {
-            ususer.delete(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (DataIntegrityViolationException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar al USUARIO");
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<Usuario> eliminar(@PathVariable Integer id) {
+        usuarioService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("/user/update/{id}")
-    public ResponseEntity<Usuario> updateClient(@RequestBody Usuario empl, @PathVariable("id") Integer id){
-        Usuario ca =ususer.findById(id);
-        if(ca == null){
-            ca.setPassword(empl.getPassword());
-            ca.setRol(empl.getRol());
-            ca.setInstruccion(empl.getInstruccion());
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Integer id, @RequestBody Usuario us) {
+        Usuario usuario = usuarioService.findById(id);
+        if (usuario == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             try {
-                ca.setRol(empl.getRol());
-                ca.setInstruccion(empl.getInstruccion());
-                return new ResponseEntity<>(ususer.save(empl), HttpStatus.CREATED);
-            }catch (Exception e){
+                usuario.setId_usuario(us.getId_usuario());
+                usuario.setPassword(us.getPassword());
+                return new ResponseEntity<>(usuarioService.save(usuario), HttpStatus.CREATED);
+            } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+
         }
+
     }
 }

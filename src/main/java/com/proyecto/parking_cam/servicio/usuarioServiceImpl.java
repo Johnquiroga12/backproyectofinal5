@@ -10,23 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class usuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService {
     @Autowired
-    private UsuarioRepository Repository;
+    UsuarioRepository usarioRepository;
 
     @Override
     public CrudRepository<Usuario, Integer> getDao() {
-        return Repository;
-    }
-
-    @Override
-    public Usuario login(String username, String password) {
-        return Repository.findByUsernameAndPassword(username, password);
-    }
-    @Override
-    public boolean porUsername(String username) {
-        if (Repository.findByUsername(username)!=null) {
-            return true;
-        }else {
-            return false;
-        }
+        return usarioRepository;
     }
 }

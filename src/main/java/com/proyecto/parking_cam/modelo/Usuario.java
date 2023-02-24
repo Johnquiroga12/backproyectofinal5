@@ -26,7 +26,6 @@ public class Usuario  implements Serializable {
     private String rol;
    
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
     
     private Persona persona;

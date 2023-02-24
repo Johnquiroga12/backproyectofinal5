@@ -30,7 +30,6 @@ public class Vehiculo implements Serializable{
 	 @Column(name = "color")
 	  private String color;
 	
-         @JsonIgnore
 	 @ManyToOne
 	 @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
 	 private Persona persona;

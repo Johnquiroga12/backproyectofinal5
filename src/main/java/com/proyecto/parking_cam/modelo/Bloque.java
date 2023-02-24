@@ -18,9 +18,6 @@ public class Bloque implements Serializable {
     private Integer id_bloque;
     @Column(name = "plazas")
     private String plazas;
-    
-    
-    @JsonIgnore
     @OneToMany(mappedBy = "bloque")
     private List<Registro> registro;
 

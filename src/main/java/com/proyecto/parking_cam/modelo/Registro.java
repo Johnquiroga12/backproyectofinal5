@@ -31,10 +31,6 @@ public class Registro implements Serializable {
     private Usuario usuario;
     
     @ManyToOne
-    @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
-    private Persona persona;
-    
-    @ManyToOne
     @JoinColumn(name="id_bloque",referencedColumnName ="id_bloque")
     private Bloque bloque;
     
@@ -88,14 +84,6 @@ public class Registro implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Persona getPersona() {
-		return persona;
-	}
-
-	public void setPersona(Persona persona) {
-		this.persona = persona;
 	}
 
 	public Bloque getBloque() {

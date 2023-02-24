@@ -36,10 +36,8 @@ public class Persona implements Serializable {
     private String jornada;
 
 
-    @JsonIgnore
     @OneToOne(mappedBy = "persona")
     private Usuario usuario;
-    @JsonIgnore
     @OneToMany(mappedBy = "persona")
      private List<Vehiculo> vehiculo;
 

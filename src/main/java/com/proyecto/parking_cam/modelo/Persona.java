@@ -35,7 +35,7 @@ public class Persona implements Serializable {
     @Column(name = "jornada")
     private String jornada;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "persona")
     private Usuario usuario;
     @OneToMany(mappedBy = "persona")

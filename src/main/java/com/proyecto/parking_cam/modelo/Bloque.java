@@ -18,8 +18,10 @@ public class Bloque implements Serializable {
     private Integer id_bloque;
     @Column(name = "plazas")
     private String plazas;
-    @OneToMany(mappedBy = "bloque")
-    private List<Registro> registro;
+    
+    @ManyToOne
+    @JoinColumn(name="id_registro",referencedColumnName ="id_registro")
+    private Registro registro;
 
 
 	public Integer getId_bloque() {
@@ -39,19 +41,6 @@ public class Bloque implements Serializable {
 
 	public void setPlazas(String plazas) {
 		this.plazas = plazas;
-	}
-
-
-	public List<Registro> getRegistro() {
-		return registro;
-	}
-
-
-	public void setRegistro(List<Registro> registro) {
-		this.registro = registro;
-	}
-    
-
-    
+	}    
 
 }

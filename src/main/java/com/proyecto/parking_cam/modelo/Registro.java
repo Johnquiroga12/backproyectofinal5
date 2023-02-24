@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,9 +31,8 @@ public class Registro implements Serializable {
     @JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
     private Usuario usuario;
     
-    @ManyToOne
-    @JoinColumn(name="id_bloque",referencedColumnName ="id_bloque")
-    private Bloque bloque;
+    @OneToMany(mappedBy = "registro")
+    private List<Bloque> bloque;
     
     @ManyToOne
     @JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
@@ -84,14 +84,6 @@ public class Registro implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	public Bloque getBloque() {
-		return bloque;
-	}
-
-	public void setBloque(Bloque bloque) {
-		this.bloque = bloque;
 	}
 
 	public Vehiculo getVehiculo() {

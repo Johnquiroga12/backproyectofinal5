@@ -12,15 +12,15 @@ import java.util.List;
 
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/apii")
+@RequestMapping("/api")
 public class bloqueController {
     @Autowired
-    private bloqueService bloser;
+    private bloqueService bloqueService;
 
     @GetMapping("/block/list")
     public ResponseEntity<List<Bloque>> getAll() {
         try {
-            return new ResponseEntity<>(bloser.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(bloqueService.findByAll(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -29,7 +29,7 @@ public class bloqueController {
     @GetMapping("/block/search/{id}")
     public ResponseEntity<Bloque> getById(@PathVariable("id") Integer id){
         try {
-            return  new ResponseEntity<>(bloser.findById(id), HttpStatus.OK);
+            return  new ResponseEntity<>(bloqueService.findById(id), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -37,7 +37,7 @@ public class bloqueController {
     @PostMapping("/block/create")
     public ResponseEntity<Bloque> createReproducion(@RequestBody Bloque bloque){
         try {
-            return new ResponseEntity<>(bloser.save(bloque), HttpStatus.CREATED);
+            return new ResponseEntity<>(bloqueService.save(bloque), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,7 +47,7 @@ public class bloqueController {
     @DeleteMapping("/block/delete/{id}")
     public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
         try {
-            bloser.delete(id);
+        	bloqueService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataIntegrityViolationException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar al bloque");
@@ -58,14 +58,14 @@ public class bloqueController {
 
     @PutMapping("/block/update/{id}")
     public ResponseEntity<Bloque> updateClient(@RequestBody Bloque empl, @PathVariable("id") Integer id){
-        Bloque ca =bloser.findById(id);
+        Bloque ca =bloqueService.findById(id);
 
         if(ca == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
                 ca.setPlazas(empl.getPlazas());
-                return new ResponseEntity<>(bloser.save(empl), HttpStatus.CREATED);
+                return new ResponseEntity<>(bloqueService.save(empl), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

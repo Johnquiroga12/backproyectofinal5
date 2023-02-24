@@ -4,12 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -45,6 +41,79 @@ public class Registro implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
     private Vehiculo vehiculo;
+
+	public Integer getId_registro() {
+		return id_registro;
+	}
+
+	public void setId_registro(Integer id_registro) {
+		this.id_registro = id_registro;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getHora_entrada() {
+		return hora_entrada;
+	}
+
+	public void setHora_entrada(String hora_entrada) {
+		this.hora_entrada = hora_entrada;
+	}
+
+	public String getHora_salida() {
+		return hora_salida;
+	}
+
+	public void setHora_salida(String hora_salida) {
+		this.hora_salida = hora_salida;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Bloque getBloque() {
+		return bloque;
+	}
+
+	public void setBloque(Bloque bloque) {
+		this.bloque = bloque;
+	}
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+    
     
     
 }

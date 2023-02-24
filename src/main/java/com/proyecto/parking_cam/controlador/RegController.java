@@ -15,42 +15,42 @@ import java.util.List;
 @RequestMapping("/api")
 public class RegController {
     @Autowired
-    private registroService ser;
+    private registroService registroService;
 
-    @GetMapping("/do/listar")
+    @GetMapping("/registros/listar")
     public ResponseEntity<List<Registro>> getAll() {
         try {
-            return new ResponseEntity<>(ser.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(registroService.findByAll(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @GetMapping("/do/search/{id}")
+    @GetMapping("/registros/search/{id}")
     public ResponseEntity<Registro> getById(@PathVariable("id") Integer id){
         try {
-            return  new ResponseEntity<>(ser.findById(id), HttpStatus.OK);
+            return  new ResponseEntity<>(registroService.findById(id), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
 
-    @PostMapping("/do/crear")
+    @PostMapping("/registros/crear")
     public ResponseEntity<Registro> createReproducion(@RequestBody Registro registro){
         try {
-            return new ResponseEntity<>(ser.save(registro), HttpStatus.CREATED);
+            return new ResponseEntity<>(registroService.save(registro), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-    @DeleteMapping("/do/delete/{id}")
+    @DeleteMapping("/registros/delete/{id}")
     public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
         try {
-            ser.delete(id);
+        	registroService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataIntegrityViolationException e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar al docente");
@@ -58,26 +58,21 @@ public class RegController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-/*
-    @PutMapping("/do/update/{id}")
-    public ResponseEntity<Registro> updateClient(@RequestBody Registro empl, @PathVariable("id") Integer id){
-        Registro ca =ser.findById(id);
+    @PutMapping("/registros/update/{id}")
+    public ResponseEntity<Registro> updateClient(@RequestBody Registro reg, @PathVariable("id") Integer id){
+        Registro ca =registroService.findById(id);
 
         if(ca == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-                ca.setNombre(empl.getNombre());
-                ca.setApellido(empl.getApellido());
-                ca.setCorreo(empl.getCorreo());
-                ca.setTelefono(empl.getTelefono());
-                ca.setContrasena(empl.getContrasena());
-                ca.setVeri_contrasena(empl.getVeri_contrasena());
-                return new ResponseEntity<>(ser.save(empl), HttpStatus.CREATED);
+                ca.setHora_salida(reg.getHora_salida());
+                ca.setObservaciones(reg.getObservaciones());
+                return new ResponseEntity<>(registroService.save(reg), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-    }*/
+    }
 }

@@ -2,11 +2,8 @@ package com.proyecto.parking_cam.modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -15,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "bloque")
 public class Bloque implements Serializable {
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bloque")
     private Integer id_bloque;

@@ -19,9 +19,9 @@ public class Registro implements Serializable {
     @Column(name = "fecha")
     private Date fecha;
     @Column(name = "hora_entrada")
-    private Date hora_entrada;
+    private String hora_entrada;
     @Column(name = "hora_salida")
-    private Date hora_salida;
+    private String hora_salida;
     @Column(name = "observaciones")
     private String observaciones;
 
@@ -54,19 +54,19 @@ public class Registro implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Date getHora_entrada() {
+	public String getHora_entrada() {
 		return hora_entrada;
 	}
 
-	public void setHora_entrada(Date hora_entrada) {
+	public void setHora_entrada(String hora_entrada) {
 		this.hora_entrada = hora_entrada;
 	}
 
-	public Date getHora_salida() {
+	public String getHora_salida() {
 		return hora_salida;
 	}
 
-	public void setHora_salida(Date hora_salida) {
+	public void setHora_salida(String hora_salida) {
 		this.hora_salida = hora_salida;
 	}
 

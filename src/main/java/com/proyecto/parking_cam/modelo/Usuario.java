@@ -27,10 +27,9 @@ public class Usuario  implements Serializable {
     @Column(name = "rol")
     private String rol;
    
-    @OneToOne
-    @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
+    @OneToMany(mappedBy = "usuario")
+    private List<Persona> persona;
     
-    private Persona persona;
 	public Integer getId_usuario() {
 		return id_usuario;
 	}
@@ -48,12 +47,6 @@ public class Usuario  implements Serializable {
 	}
 	public void setRol(String rol) {
 		this.rol = rol;
-	}
-	public Persona getPersona() {
-		return persona;
-	}
-	public void setPersona(Persona persona) {
-		this.persona = persona;
 	}
     
     

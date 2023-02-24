@@ -29,10 +29,9 @@ public class Vehiculo implements Serializable{
 	  private String modelo;
 	 @Column(name = "color")
 	  private String color;
-	
-	 @ManyToOne
-	 @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
-	 private Persona persona;
+	 
+	 @OneToMany(mappedBy = "vehiculo")
+     private List<Persona> persona;
 	 
 	 
 	 //@JsonIgnore

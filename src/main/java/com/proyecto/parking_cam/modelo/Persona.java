@@ -38,9 +38,11 @@ public class Persona implements Serializable {
     @JsonIgnore
     @OneToOne(mappedBy = "persona")
     private Usuario usuario;
-    @JsonIgnore
-    @OneToMany(mappedBy = "persona")
-     private List<Vehiculo> vehiculo;
+    
+    @ManyToOne
+	@JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
+	private Vehiculo vehiculo;
+    
 
 	public Integer getId_persona() {
 		return id_persona;

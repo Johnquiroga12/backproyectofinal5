@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.List;
@@ -28,16 +29,16 @@ public class Vehiculo implements Serializable{
 	  private String modelo;
 	 @Column(name = "color")
 	  private String color;
-	 
-	 @JsonIgnore
+	
+         @JsonIgnore
 	 @ManyToOne
 	 @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
 	 private Persona persona;
 	 
 	 
-	 @JsonIgnore
-	 @OneToMany(mappedBy = "vehiculo")
-	 private List<Registro> registro;
+	 //@JsonIgnore
+	 //@OneToMany(mappedBy = "vehiculo")
+	 //private List<Registro> registro;
 	 
 	 
 }

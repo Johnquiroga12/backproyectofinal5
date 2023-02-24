@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,9 +35,13 @@ public class Persona implements Serializable {
     @Column(name = "jornada")
     private String jornada;
 
+
     @JsonIgnore
     @OneToOne(mappedBy = "persona")
     private Usuario usuario;
+    @JsonIgnore
+    @OneToMany(mappedBy = "persona")
+     private List<Vehiculo> vehiculo;
 
 	public Integer getId_persona() {
 		return id_persona;

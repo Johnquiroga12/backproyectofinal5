@@ -30,9 +30,12 @@ public class Vehiculo implements Serializable{
 	 @Column(name = "color")
 	  private String color;
 	 
-	 @OneToMany(mappedBy = "vehiculo")
-     private List<Persona> persona;
+	 /*@OneToMany(mappedBy = "vehiculo")
+     private List<Persona> persona;*/
 	 
+	 @ManyToOne
+	 @JoinColumn(name="id_persona",referencedColumnName ="id_persona")
+	 private Persona persona;
 	 
 	 //@JsonIgnore
 	 //@OneToMany(mappedBy = "vehiculo")

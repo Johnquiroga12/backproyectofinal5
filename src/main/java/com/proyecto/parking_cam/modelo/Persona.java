@@ -34,15 +34,17 @@ public class Persona implements Serializable {
     private String carrera;
     @Column(name = "jornada")
     private String jornada;
-
-       
-    @ManyToOne
-   	@JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
-   	private Usuario usuario;
     
-    @ManyToOne
+    @OneToMany(mappedBy = "persona")
+    @JsonIgnore
+   	private List<Usuario> usuario;
+    
+    @OneToMany(mappedBy = "persona")
+    private List<Vehiculo> Vehiculo;
+    
+    /*@ManyToOne
 	@JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
-	private Vehiculo vehiculo;
+	private Vehiculo vehiculo;*/
     
 
 	public Integer getId_persona() {
@@ -125,13 +127,7 @@ public class Persona implements Serializable {
 		this.jornada = jornada;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
     
     
     

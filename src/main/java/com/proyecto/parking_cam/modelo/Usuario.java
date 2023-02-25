@@ -27,8 +27,9 @@ public class Usuario  implements Serializable {
     @Column(name = "rol")
     private String rol;
    
-    @OneToMany(mappedBy = "usuario")
-    private List<Persona> persona;
+    @ManyToOne
+ 	@JoinColumn(name="id_persona",referencedColumnName ="id_persona")
+    private Persona persona;
     
 	public Integer getId_usuario() {
 		return id_usuario;

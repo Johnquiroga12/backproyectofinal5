@@ -97,7 +97,13 @@ public class Registro implements Serializable {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-    
-    
-    
+
+	public Bloque getBloque() {
+		return bloque;
+	}
+
+	public void setBloque(Bloque bloque) {
+		this.bloque = bloque;
+	}
+	
 }

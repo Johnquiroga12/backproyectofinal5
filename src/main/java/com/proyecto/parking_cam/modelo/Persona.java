@@ -34,12 +34,10 @@ public class Persona implements Serializable {
     private String carrera;
     @Column(name = "jornada")
     private String jornada;
-    
-    /*@OneToMany(mappedBy = "persona")
-    @JsonIgnore
-    private List<Usuario> usuario;*/
+ 
     
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Usuario usuario;
     
     @OneToMany(mappedBy = "persona")

@@ -22,11 +22,6 @@ public class Bloque implements Serializable {
     @OneToMany(mappedBy = "bloque")
     @JsonIgnore
     private List<Registro> Registro;
-    
-    /*@ManyToOne
-    @JoinColumn(name="id_registro",referencedColumnName ="id_registro")
-    private Registro registro;*/
-
 
 	public Integer getId_bloque() {
 		return id_bloque;

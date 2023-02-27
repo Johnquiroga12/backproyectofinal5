@@ -35,9 +35,6 @@ public class Registro implements Serializable {
     @JoinColumn(name="id_bloque",referencedColumnName ="id_bloque")
     private Bloque bloque;
     
-    /*@OneToMany(mappedBy = "registro")
-    private List<Bloque> bloque;*/
-    
     @ManyToOne
     @JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
     private Vehiculo vehiculo;

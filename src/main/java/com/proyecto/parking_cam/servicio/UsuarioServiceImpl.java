@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class usuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService {
+public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> implements UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 

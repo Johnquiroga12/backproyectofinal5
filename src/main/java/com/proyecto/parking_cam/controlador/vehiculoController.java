@@ -11,38 +11,45 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.proyecto.parking_cam.modelo.Bloque;
-import com.proyecto.parking_cam.modelo.Usuario;
 import com.proyecto.parking_cam.modelo.Vehiculo;
-import com.proyecto.parking_cam.servicio.bloqueService;
-import com.proyecto.parking_cam.servicio.vehiculoService;
+import com.proyecto.parking_cam.servicio.VehiculoService;
 
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/apii")
+@RequestMapping("/api")
 public class vehiculoController {
 	
 	@Autowired
-    private vehiculoService vehiServ;
+    private VehiculoService vehServ;
 	
 	@GetMapping("/vehiculo/list")
-    public ResponseEntity<List<Vehiculo>> getAll() {
+    public ResponseEntity<List<Vehiculo>> list() {
         try {
-            return new ResponseEntity<>(vehiServ.findByAll(), HttpStatus.OK);
+            return new ResponseEntity<>(vehServ.findByAll(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 	
-	@PostMapping("/vehiculo/create")
-    public ResponseEntity<Vehiculo> createReproducion(@RequestBody Vehiculo vehiculo){
+	@GetMapping("/vehiculo/search/{id}")
+    public ResponseEntity<Vehiculo> search(@PathVariable("id") Integer id){
         try {
-            return new ResponseEntity<>(vehiServ.save(vehiculo), HttpStatus.CREATED);
+            return  new ResponseEntity<>(vehServ.findById(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+	
+	@PostMapping("/vehiculo/create")
+    public ResponseEntity<Vehiculo> create(@RequestBody Vehiculo vehiculo){
+        try {
+            return new ResponseEntity<>(vehServ.save(vehiculo), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,14 +57,34 @@ public class vehiculoController {
     }
 	
 	@DeleteMapping("/vehiculo/delete/{id}")
-    public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         try {
-        	vehiServ.delete(id);
+        	vehServ.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataIntegrityViolationException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar el vehiculo");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar el Registro");
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+	
+	@PutMapping("/vehiculo/update/{id}")
+    public ResponseEntity<Vehiculo> update(@RequestBody Vehiculo vehRb, @PathVariable("id") Integer id){
+		Vehiculo veh = vehServ.findById(id);
+
+        if(veh == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            try {
+            	veh.setPlaca(vehRb.getPlaca());
+            	veh.setMarca(vehRb.getMarca());
+            	veh.setModelo(vehRb.getModelo());
+            	veh.setColor(vehRb.getColor());
+
+                return new ResponseEntity<>(vehServ.save(vehRb), HttpStatus.CREATED);
+            }catch (Exception e){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
     }
 }

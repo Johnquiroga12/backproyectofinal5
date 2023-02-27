@@ -25,7 +25,7 @@ public class Persona implements Serializable {
     @Column(name = "correo")
     private String correo;
     @Column(name = "cargo")
-    private String tipo;
+    private String cargo;
     @Column(name = "celular")
     private String celular;
     @Column(name = "n_emergencia")
@@ -35,17 +35,16 @@ public class Persona implements Serializable {
     @Column(name = "jornada")
     private String jornada;
     
-    @OneToMany(mappedBy = "persona")
+    /*@OneToMany(mappedBy = "persona")
     @JsonIgnore
-    private List<Usuario> usuario;
+    private List<Usuario> usuario;*/
+    
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Usuario usuario;
     
     @OneToMany(mappedBy = "persona")
     @JsonIgnore
     private List<Vehiculo> Vehiculo;
-    
-    /*@ManyToOne
-	@JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
-	private Vehiculo vehiculo;*/
     
 
 	public Integer getId_persona() {
@@ -88,12 +87,12 @@ public class Persona implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public String getCelular() {
@@ -127,9 +126,5 @@ public class Persona implements Serializable {
 	public void setJornada(String jornada) {
 		this.jornada = jornada;
 	}
-
-
-    
-    
     
    }

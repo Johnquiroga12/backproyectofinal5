@@ -10,7 +10,7 @@ import com.proyecto.parking_cam.repositoryo.BloqueRepository;
 import com.proyecto.parking_cam.repositoryo.VehiculoRepository;
 
 @Service
-public class vehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> implements vehiculoService{
+public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> implements VehiculoService{
 	@Autowired
     private VehiculoRepository Repository;
     @Override

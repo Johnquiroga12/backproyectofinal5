@@ -19,9 +19,13 @@ public class Bloque implements Serializable {
     @Column(name = "plazas")
     private String plazas;
     
-    @ManyToOne
+    @OneToMany(mappedBy = "bloque")
+    @JsonIgnore
+    private List<Registro> Registro;
+    
+    /*@ManyToOne
     @JoinColumn(name="id_registro",referencedColumnName ="id_registro")
-    private Registro registro;
+    private Registro registro;*/
 
 
 	public Integer getId_bloque() {

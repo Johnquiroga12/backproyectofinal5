@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class bloqueServiceImpl extends GenericServiceImpl<Bloque, Integer> implements bloqueService {
+public class BloqueServiceImpl extends GenericServiceImpl<Bloque, Integer> implements BloqueService {
     @Autowired
     private BloqueRepository Repository;
     @Override

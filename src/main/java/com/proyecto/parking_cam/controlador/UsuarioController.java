@@ -1,7 +1,8 @@
 package com.proyecto.parking_cam.controlador;
 
-import com.proyecto.parking_cam.modelo.Bloque;
-import com.proyecto.parking_cam.servicio.bloqueService;
+import com.proyecto.parking_cam.modelo.Usuario;
+import com.proyecto.parking_cam.modelo.Vehiculo;
+import com.proyecto.parking_cam.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -13,59 +14,64 @@ import java.util.List;
 @CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api")
-public class bloqueController {
+public class UsuarioController {
     @Autowired
-    private bloqueService bloqueService;
+    private UsuarioService usuServ;
 
-    @GetMapping("/block/list")
-    public ResponseEntity<List<Bloque>> getAll() {
-        try {
-            return new ResponseEntity<>(bloqueService.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
-    @GetMapping("/block/search/{id}")
-    public ResponseEntity<Bloque> getById(@PathVariable("id") Integer id){
+    @GetMapping("/usuario/list")
+    public ResponseEntity<List<Usuario>> list() {
         try {
-            return  new ResponseEntity<>(bloqueService.findById(id), HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @PostMapping("/block/create")
-    public ResponseEntity<Bloque> createReproducion(@RequestBody Bloque bloque){
-        try {
-            return new ResponseEntity<>(bloqueService.save(bloque), HttpStatus.CREATED);
+            return new ResponseEntity<>(usuServ.findByAll(), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
+    
+    @GetMapping("/usuario/search/{id}")
+    public ResponseEntity<Usuario> search(@PathVariable("id") Integer id){
+        try {
+            return  new ResponseEntity<>(usuServ.findById(id), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-    @DeleteMapping("/block/delete/{id}")
+    @PostMapping("/usuario/create")
+    public ResponseEntity<Usuario> createReproducion(@RequestBody Usuario usuario){
+        try {
+            return new ResponseEntity<>(usuServ.save(usuario), HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @DeleteMapping("/usuario/delete/{id}")
     public ResponseEntity<?> deletesong(@PathVariable("id") Integer id) {
         try {
-        	bloqueService.delete(id);
+        	usuServ.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataIntegrityViolationException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar al bloque");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar el Registro");
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/block/update/{id}")
-    public ResponseEntity<Bloque> updateClient(@RequestBody Bloque empl, @PathVariable("id") Integer id){
-        Bloque ca =bloqueService.findById(id);
+    @PutMapping("/usuario/update/{id}")
+    public ResponseEntity<Usuario> update(@RequestBody Usuario usuRb, @PathVariable("id") Integer id){
+    	Usuario usu = usuServ.findById(id);
 
-        if(ca == null){
+        if(usu == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-                ca.setPlazas(empl.getPlazas());
-                return new ResponseEntity<>(bloqueService.save(empl), HttpStatus.CREATED);
+            	usu.setRol(usuRb.getRol());
+            	usu.setPassword(usuRb.getPassword());
+
+                return new ResponseEntity<>(usuServ.save(usuRb), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

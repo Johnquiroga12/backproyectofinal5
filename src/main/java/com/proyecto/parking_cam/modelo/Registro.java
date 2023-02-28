@@ -18,7 +18,7 @@ public class Registro implements Serializable {
     @Column(name = "id_registro")
     private Integer id_registro;
     @Column(name = "fecha")
-    private Date fecha;
+    private String fecha;
     @Column(name = "hora_entrada")
     private String hora_entrada;
     @Column(name = "hora_salida")
@@ -47,11 +47,11 @@ public class Registro implements Serializable {
 		this.id_registro = id_registro;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

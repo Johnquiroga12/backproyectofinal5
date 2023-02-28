@@ -12,34 +12,43 @@ import java.util.List;
 @Entity
 @Table(name = "bloque")
 public class Bloque implements Serializable {
-	@Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bloque")
     private Integer id_bloque;
+    @Column(name = "nombre")
+    private String nombre;
     @Column(name = "plazas")
     private String plazas;
-    
+
     @OneToMany(mappedBy = "bloque")
     @JsonIgnore
     private List<Registro> Registro;
 
-	public Integer getId_bloque() {
-		return id_bloque;
-	}
+    public Integer getId_bloque() {
+        return id_bloque;
+    }
 
+    public void setId_bloque(Integer id_bloque) {
+        this.id_bloque = id_bloque;
+    }
 
-	public void setId_bloque(Integer id_bloque) {
-		this.id_bloque = id_bloque;
-	}
+    public String getPlazas() {
+        return plazas;
+    }
 
+    public void setPlazas(String plazas) {
+        this.plazas = plazas;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getPlazas() {
-		return plazas;
-	}
-
-
-	public void setPlazas(String plazas) {
-		this.plazas = plazas;
-	}    
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
 }

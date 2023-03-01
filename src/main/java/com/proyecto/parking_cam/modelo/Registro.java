@@ -26,7 +26,7 @@ public class Registro implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
-
+    
     @ManyToOne
     @JoinColumn(name="id_usuario",referencedColumnName ="id_usuario")
     private Usuario usuario;
@@ -38,6 +38,32 @@ public class Registro implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_vehiculo",referencedColumnName ="id_vehiculo")
     private Vehiculo vehiculo;
+    
+    
+        public Registro(){
+        
+    }
+        
+        public Registro(Integer id){
+        
+            super();
+            this.id_registro = id;
+    }
+
+    public Registro(Integer id_registro, String fecha, String hora_entrada, String hora_salida, String observaciones, Usuario usuario, Bloque bloque, Vehiculo vehiculo) {
+        this.id_registro = id_registro;
+        this.fecha = fecha;
+        this.hora_entrada = hora_entrada;
+        this.hora_salida = hora_salida;
+        this.observaciones = observaciones;
+        this.usuario = usuario;
+        this.bloque = bloque;
+        this.vehiculo = vehiculo;
+    }
+
+        
+        
+ 
 
 	public Integer getId_registro() {
 		return id_registro;

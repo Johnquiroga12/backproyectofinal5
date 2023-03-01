@@ -22,10 +22,24 @@ public class Bloque implements Serializable {
     @Column(name = "plazas")
     private String plazas;
 
-    @OneToMany(mappedBy = "bloque")
-    @JsonIgnore
-    private List<Registro> Registro;
 
+        public Bloque(){
+        
+    }
+        
+        public Bloque(Integer id){
+        
+            this.id_bloque = id;
+    }
+
+    public Bloque(Integer id_bloque, String nombre, String plazas) {
+        this.id_bloque = id_bloque;
+        this.nombre = nombre;
+        this.plazas = plazas;
+    }
+       
+        
+        
     public Integer getId_bloque() {
         return id_bloque;
     }

@@ -10,68 +10,102 @@ import java.io.Serializable;
 @Entity
 @Table(name = "vehiculo")
 public class Vehiculo implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_vehiculo")
-	private Integer id_vehiculo;
-	@Column(name = "placa")
-	private String placa;
-	@Column(name = "marca")
-	private String marca;
-	@Column(name = "modelo")
-	private String modelo;
-	@Column(name = "color")
-	private String color;
 
-	@ManyToOne
-	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-	private Persona persona;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_vehiculo")
+    private Integer id_vehiculo;
+    @Column(name = "placa")
+    private String placa;
+    @Column(name = "marca")
+    private String marca;
+    @Column(name = "modelo")
+    private String modelo;
+    @Column(name = "color")
+    private String color;
+    @Column(name = "estado")
+    private String estado;
 
-	public Integer getId_vehiculo() {
-		return id_vehiculo;
-	}
+    @ManyToOne
+    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+    private Persona persona;
 
-	public void setId_vehiculo(Integer id_vehiculo) {
-		this.id_vehiculo = id_vehiculo;
-	}
+    
+        public Vehiculo(){
+        
+    }
+        
+        public Vehiculo(Integer id){
+        
+            super();
+            this.id_vehiculo = id;
+    }
 
-	public String getPlaca() {
-		return placa;
-	}
+    public Vehiculo(Integer id_vehiculo, String placa, String marca, String modelo, String color, String estado, Persona persona) {
+        this.id_vehiculo = id_vehiculo;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.color = color;
+        this.estado = estado;
+        this.persona = persona;
+    }
+        
+        
+        
+    public Integer getId_vehiculo() {
+        return id_vehiculo;
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+    public void setId_vehiculo(Integer id_vehiculo) {
+        this.id_vehiculo = id_vehiculo;
+    }
 
-	public String getMarca() {
-		return marca;
-	}
+    public String getEstado() {
+        return estado;
+    }
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
-	public String getModelo() {
-		return modelo;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public String getColor() {
-		return color;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public void setColor(String color) {
-		this.color = color;
-	}
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 
-	public Persona getPersona() {
-		return persona;
-	}
+    public String getModelo() {
+        return modelo;
+    }
 
-	public void setPersona(Persona persona) {
-		this.persona = persona;
-	}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 }

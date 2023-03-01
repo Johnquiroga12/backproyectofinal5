@@ -34,16 +34,33 @@ public class Persona implements Serializable {
     private String carrera;
     @Column(name = "jornada")
     private String jornada;
+    @Column(name = "estado")
+    private String estado;
  
     
-    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Usuario usuario;
+    public Persona(){
+        
+    }
+
+    public Persona(Integer id){
+        
+        super();
+        this.id_persona = id;
+    }
     
-    @OneToMany(mappedBy = "persona")
-    @JsonIgnore
-    private List<Vehiculo> Vehiculo;
-    
+    public Persona(Integer id_persona, String nombre, String apellido, String cedula, String correo, String cargo, String celular, String n_emergencia, String carrera, String jornada, String estado, Usuario usuario) {
+        this.id_persona = id_persona;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
+        this.correo = correo;
+        this.cargo = cargo;
+        this.celular = celular;
+        this.n_emergencia = n_emergencia;
+        this.carrera = carrera;
+        this.jornada = jornada;
+        this.estado = estado;
+    }
 
 	public Integer getId_persona() {
 		return id_persona;
@@ -91,6 +108,13 @@ public class Persona implements Serializable {
 
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
+	}
+        public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getCelular() {

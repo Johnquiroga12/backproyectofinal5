@@ -1,8 +1,12 @@
 package com.proyecto.parking_cam.controlador;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.parking_cam.modelo.Vehiculo;
@@ -86,5 +91,29 @@ public class vehiculoController {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+	
+	@GetMapping("/vehiculo/placa/{placa}")
+    public ResponseEntity<?> obPlaca(@PathVariable String placa) {
+		
+		
+		Map<String, Object> response = new HashMap<>();
+		Vehiculo unidad = null;
+        try {
+        	unidad = vehServ.findByPlaca(placa);
+        }catch (DataAccessException e){
+            response.put("mensaje", "error");
+            response.put("error", e.getMostSpecificCause().getCause());
+
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
+        if(unidad==null) {
+        	response.put("mensaje", "no existe");
+        	return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+        response.put("mensaje", "ENCONTRADA");
+        response.put("unidad", unidad);
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

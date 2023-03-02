@@ -2,6 +2,7 @@ package com.proyecto.parking_cam.controlador;
 
 import com.proyecto.parking_cam.modelo.Usuario;
 import com.proyecto.parking_cam.modelo.Vehiculo;
+import com.proyecto.parking_cam.repositoryo.UsuarioRepository;
 import com.proyecto.parking_cam.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -17,8 +18,25 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioService usuServ;
+    
+    @Autowired
+    UsuarioRepository rU;
 
 
+    @PostMapping("/singin")
+    public Usuario IniciarSesion(@RequestBody Usuario usuario) throws Exception{
+        
+        try{
+            
+            Usuario usr = rU.buscarRol(usuario.getUsername(), usuario.getPassword());
+            return usr;
+        }catch(Exception e){
+            
+            System.out.println(e.toString());
+            return null;
+            
+        }
+    }
     @GetMapping("/usuario/list")
     public ResponseEntity<List<Usuario>> list() {
         try {

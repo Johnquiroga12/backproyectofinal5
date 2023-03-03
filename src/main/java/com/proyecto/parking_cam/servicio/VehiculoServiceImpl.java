@@ -9,6 +9,8 @@ import com.proyecto.parking_cam.modelo.Vehiculo;
 import com.proyecto.parking_cam.repositoryo.BloqueRepository;
 import com.proyecto.parking_cam.repositoryo.VehiculoRepository;
 
+import java.util.List;
+
 @Service
 public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> implements VehiculoService{
 	@Autowired
@@ -16,5 +18,9 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
     @Override
     public CrudRepository<Vehiculo, Integer> getDao() {
         return Repository;
+    }
+    @Override
+    public List<Vehiculo> listarVehiculosActivos() {
+        return Repository.listarVehiculosActivos();
     }
 }

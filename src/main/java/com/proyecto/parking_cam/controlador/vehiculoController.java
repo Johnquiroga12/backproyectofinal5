@@ -26,7 +26,16 @@ public class vehiculoController {
 	
 	@Autowired
     private VehiculoService vehServ;
-	
+    @GetMapping("/vehiculo/listar")
+    public ResponseEntity<List<Vehiculo>> obtenerLista() {
+        try {
+                return new ResponseEntity<>(vehServ.listarVehiculosActivos(), HttpStatus.OK);
+            }catch (Exception e){
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+        }
+
 	@GetMapping("/vehiculo/list")
     public ResponseEntity<List<Vehiculo>> list() {
         try {
@@ -36,6 +45,7 @@ public class vehiculoController {
         }
 
     }
+
 	
 	@GetMapping("/vehiculo/search/{id}")
     public ResponseEntity<Vehiculo> search(@PathVariable("id") Integer id){
@@ -76,10 +86,7 @@ public class vehiculoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-            	veh.setPlaca(vehRb.getPlaca());
-            	veh.setMarca(vehRb.getMarca());
-            	veh.setModelo(vehRb.getModelo());
-            	veh.setColor(vehRb.getColor());
+            	veh.setEstado(vehRb.getEstado());
 
                 return new ResponseEntity<>(vehServ.save(vehRb), HttpStatus.CREATED);
             }catch (Exception e){

@@ -1,7 +1,6 @@
 package com.proyecto.parking_cam.controlador;
 
 import com.proyecto.parking_cam.modelo.Usuario;
-import com.proyecto.parking_cam.modelo.Vehiculo;
 import com.proyecto.parking_cam.repositoryo.UsuarioRepository;
 import com.proyecto.parking_cam.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,18 @@ public class UsuarioController {
             
         }
     }
+    
+    @GetMapping("/usuario/listar")
+    public ResponseEntity<List<Usuario>> obtenerLista() {
+        try {
+            return new ResponseEntity<>(usuServ.listarUsuariosActivos(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    
+    
     @GetMapping("/usuario/list")
     public ResponseEntity<List<Usuario>> list() {
         try {
@@ -86,8 +97,7 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-            	usu.setRol(usuRb.getRol());
-            	usu.setPassword(usuRb.getPassword());
+            	usu.setEstado(usuRb.getEstado());
 
                 return new ResponseEntity<>(usuServ.save(usuRb), HttpStatus.CREATED);
             }catch (Exception e){

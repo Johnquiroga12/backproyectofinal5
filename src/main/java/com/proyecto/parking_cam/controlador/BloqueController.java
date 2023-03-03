@@ -17,6 +17,17 @@ public class BloqueController {
     @Autowired
     private BloqueService bloServ;
 
+    
+    @GetMapping("/bloque/listar")
+    public ResponseEntity<List<Bloque>> obtenerLista() {
+        try {
+            return new ResponseEntity<>(bloServ.listarBloquesActivos(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    
     @GetMapping("/bloque/list")
     public ResponseEntity<List<Bloque>> list() {
         try {
@@ -64,7 +75,7 @@ public class BloqueController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-            	blo.setPlazas(bloRb.getPlazas());
+            	blo.setEstado(bloRb.getEstado());
                 return new ResponseEntity<>(bloServ.save(bloRb), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

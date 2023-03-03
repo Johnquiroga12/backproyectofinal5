@@ -25,6 +25,8 @@ public class Registro implements Serializable {
     private String hora_salida;
     @Column(name = "observaciones")
     private String observaciones;
+    @Column(name = "estado")
+    private String estado;
 
     
     @ManyToOne
@@ -50,17 +52,19 @@ public class Registro implements Serializable {
             this.id_registro = id;
     }
 
-    public Registro(Integer id_registro, String fecha, String hora_entrada, String hora_salida, String observaciones, Usuario usuario, Bloque bloque, Vehiculo vehiculo) {
+    public Registro(Integer id_registro, String fecha, String hora_entrada, String hora_salida, String observaciones, String estado, Usuario usuario, Bloque bloque, Vehiculo vehiculo) {
         this.id_registro = id_registro;
         this.fecha = fecha;
         this.hora_entrada = hora_entrada;
         this.hora_salida = hora_salida;
         this.observaciones = observaciones;
+        this.estado = estado;
         this.usuario = usuario;
         this.bloque = bloque;
         this.vehiculo = vehiculo;
     }
 
+    
         
         
  
@@ -73,6 +77,14 @@ public class Registro implements Serializable {
 		this.id_registro = id_registro;
 	}
 
+        public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+        
 	public String getFecha() {
 		return fecha;
 	}
@@ -105,6 +117,7 @@ public class Registro implements Serializable {
 		this.observaciones = observaciones;
 	}
 
+        
 	public Usuario getUsuario() {
 		return usuario;
 	}

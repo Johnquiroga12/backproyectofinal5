@@ -16,6 +16,17 @@ import java.util.List;
 public class RegistroController {
     @Autowired
     private RegistroService registroService;
+    
+    
+    @GetMapping("/registro/listar")
+    public ResponseEntity<List<Registro>> obtenerLista() {
+        try {
+            return new ResponseEntity<>(registroService.listarRegistroActivos(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 
     @GetMapping("/registro/list")
     public ResponseEntity<List<Registro>> list() {
@@ -66,8 +77,7 @@ public class RegistroController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-                ca.setHora_salida(reg.getHora_salida());
-                ca.setObservaciones(reg.getObservaciones());
+                ca.setEstado(reg.getEstado());
                 return new ResponseEntity<>(registroService.save(reg), HttpStatus.CREATED);
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

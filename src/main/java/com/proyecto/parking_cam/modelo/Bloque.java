@@ -21,6 +21,8 @@ public class Bloque implements Serializable {
     private String nombre;
     @Column(name = "plazas")
     private String plazas;
+    @Column(name = "estado")
+    private String estado;
 
 
         public Bloque(){
@@ -32,11 +34,14 @@ public class Bloque implements Serializable {
             this.id_bloque = id;
     }
 
-    public Bloque(Integer id_bloque, String nombre, String plazas) {
+    public Bloque(Integer id_bloque, String nombre, String plazas, String estado) {
         this.id_bloque = id_bloque;
         this.nombre = nombre;
         this.plazas = plazas;
+        this.estado = estado;
     }
+
+    
        
         
         
@@ -48,6 +53,14 @@ public class Bloque implements Serializable {
         this.id_bloque = id_bloque;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public String getPlazas() {
         return plazas;
     }

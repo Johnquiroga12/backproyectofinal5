@@ -7,4 +7,5 @@ import java.util.List;
 public interface UsuarioService extends GenericService<Usuario, Integer>{
 
     List<Usuario> listarUsuariosActivos();
+    public Usuario search(String filtro,String filter) throws Exception;
 }

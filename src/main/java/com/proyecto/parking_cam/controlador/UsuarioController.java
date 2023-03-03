@@ -66,6 +66,14 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/usuario/searchname")
+    public ResponseEntity<?> searchname(@RequestParam String filtro,@RequestParam String filter){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(usuServ.search(filtro, filter));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(("{\"error\":\""+e.getMessage()+"\"}"));
+        }
+    }
 
     @PostMapping("/usuario/create")
     public ResponseEntity<Usuario> createReproducion(@RequestBody Usuario usuario){

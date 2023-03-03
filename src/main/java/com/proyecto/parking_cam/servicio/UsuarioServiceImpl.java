@@ -23,4 +23,9 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     public List<Usuario> listarUsuariosActivos() {
         return usuarioRepository.listarUsuariosActivos();
     }
+     @Override
+    public Usuario search(String filtro,String filter) throws Exception {
+        return usuarioRepository.search(filtro, filter);  
+    }
+
 }

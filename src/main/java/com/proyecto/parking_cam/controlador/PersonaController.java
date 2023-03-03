@@ -18,6 +18,18 @@ public class PersonaController {
     @Autowired
     private PersonaService perServ;
 
+    
+    @GetMapping("/persona/listar")
+    public ResponseEntity<List<Persona>> obtenerLista() {
+        try {
+            return new ResponseEntity<>(perServ.listarPersonasActivos(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    
+    
     @GetMapping("/persona/list")
     public ResponseEntity<List<Persona>> list() {
         try {

@@ -23,73 +23,73 @@ import com.proyecto.parking_cam.servicio.VehiculoService;
 @RestController
 @RequestMapping("/api")
 public class vehiculoController {
-	
-	@Autowired
+
+    @Autowired
     private VehiculoService vehServ;
+
     @GetMapping("/vehiculo/listar")
     public ResponseEntity<List<Vehiculo>> obtenerLista() {
         try {
-                return new ResponseEntity<>(vehServ.listarVehiculosActivos(), HttpStatus.OK);
-            }catch (Exception e){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-
+            return new ResponseEntity<>(vehServ.listarVehiculosActivos(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-	@GetMapping("/vehiculo/list")
+    }
+
+    @GetMapping("/vehiculo/list")
     public ResponseEntity<List<Vehiculo>> list() {
         try {
             return new ResponseEntity<>(vehServ.findByAll(), HttpStatus.OK);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
-	
-	@GetMapping("/vehiculo/search/{id}")
-    public ResponseEntity<Vehiculo> search(@PathVariable("id") Integer id){
+    @GetMapping("/vehiculo/search/{id}")
+    public ResponseEntity<Vehiculo> search(@PathVariable("id") Integer id) {
         try {
-            return  new ResponseEntity<>(vehServ.findById(id), HttpStatus.OK);
-        }catch (Exception e){
+            return new ResponseEntity<>(vehServ.findById(id), HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-	
-	@PostMapping("/vehiculo/create")
-    public ResponseEntity<Vehiculo> create(@RequestBody Vehiculo vehiculo){
+
+    @PostMapping("/vehiculo/create")
+    public ResponseEntity<Vehiculo> create(@RequestBody Vehiculo vehiculo) {
         try {
             return new ResponseEntity<>(vehServ.save(vehiculo), HttpStatus.CREATED);
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
-	
-	@DeleteMapping("/vehiculo/delete/{id}")
+
+    @DeleteMapping("/vehiculo/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         try {
-        	vehServ.delete(id);
+            vehServ.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al elminar el Registro");
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-	
-	@PutMapping("/vehiculo/update/{id}")
-    public ResponseEntity<Vehiculo> update(@RequestBody Vehiculo vehRb, @PathVariable("id") Integer id){
-		Vehiculo veh = vehServ.findById(id);
 
-        if(veh == null){
+    @PutMapping("/vehiculo/update/{id}")
+    public ResponseEntity<Vehiculo> update(@RequestBody Vehiculo vehRb, @PathVariable("id") Integer id) {
+        Vehiculo veh = vehServ.findById(id);
+
+        if (veh == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             try {
-            	veh.setEstado(vehRb.getEstado());
+                veh.setEstado(vehRb.getEstado());
 
                 return new ResponseEntity<>(vehServ.save(vehRb), HttpStatus.CREATED);
-            }catch (Exception e){
+            } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }

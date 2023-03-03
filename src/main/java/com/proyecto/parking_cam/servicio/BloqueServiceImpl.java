@@ -1,6 +1,7 @@
 package com.proyecto.parking_cam.servicio;
 import com.proyecto.parking_cam.modelo.Bloque;
 import com.proyecto.parking_cam.repositoryo.BloqueRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,10 @@ public class BloqueServiceImpl extends GenericServiceImpl<Bloque, Integer> imple
     @Override
     public CrudRepository<Bloque, Integer> getDao() {
         return Repository;
+    }
+
+    @Override
+    public List<Bloque> listarBloquesActivos() {
+        return Repository.listarBloquesActivos();
     }
 }

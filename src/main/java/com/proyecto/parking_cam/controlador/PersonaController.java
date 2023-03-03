@@ -80,11 +80,7 @@ public class PersonaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             try {
-            	per.setNombre(perRb.getNombre());
-            	per.setApellido(perRb.getApellido());
-            	per.setCorreo(perRb.getCorreo());
-            	per.setCedula(perRb.getCedula());
-            	per.setCargo(perRb.getCargo());
+            	per.setEstado(perRb.getEstado());
 
                 return new ResponseEntity<>(perServ.save(perRb), HttpStatus.CREATED);
             }catch (Exception e){

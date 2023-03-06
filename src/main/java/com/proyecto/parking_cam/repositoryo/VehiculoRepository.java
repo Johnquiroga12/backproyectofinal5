@@ -13,4 +13,7 @@ import java.util.List;
 public interface VehiculoRepository  extends JpaRepository<Vehiculo, Integer>{
     @Query(value = "SELECT * FROM vehiculo v WHERE v.estado = 'A'", nativeQuery = true)
     List<Vehiculo> listarVehiculosActivos();
+    
+    
+    Vehiculo findByPlaca(String placa);
 }

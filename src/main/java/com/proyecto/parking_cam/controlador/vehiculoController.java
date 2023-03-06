@@ -94,4 +94,16 @@ public class vehiculoController {
             }
         }
     }
+    
+    @GetMapping("/vehiculo/placa/{placa}")
+    public ResponseEntity<Vehiculo> search1(@PathVariable("placa") String placa) {
+        try {
+            return new ResponseEntity<>(vehServ.findByPlaca(placa), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    
 }

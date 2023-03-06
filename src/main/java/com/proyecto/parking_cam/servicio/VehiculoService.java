@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface VehiculoService extends GenericService<Vehiculo, Integer>{
     List<Vehiculo> listarVehiculosActivos();
+    
+    Vehiculo findByPlaca(String placa);
 
 }

@@ -26,4 +26,9 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
     public List<Vehiculo> listarVehiculosActivos() {
         return Repository.listarVehiculosActivos();
     }
+
+	@Override
+	public Vehiculo findByPlaca(String placa) {
+		return Repository.findByPlaca(placa);
+	}
 }

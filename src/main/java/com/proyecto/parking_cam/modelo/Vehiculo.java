@@ -9,10 +9,9 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "vehiculo")
-public class Vehiculo implements Serializable {
+public class Vehiculo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vehiculo")
     private Integer id_vehiculo;
     @Column(name = "placa")

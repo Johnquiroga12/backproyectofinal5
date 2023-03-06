@@ -13,10 +13,13 @@ import java.util.List;
 @Entity
 @Table(name = "registro")
 public class Registro implements Serializable {
-    @Id
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_registro")
     private Integer id_registro;
+    @Column(name = "condicion")
+    private String condicion;
     @Column(name = "fecha")
     private String fecha;
     @Column(name = "hora_entrada")
@@ -52,8 +55,9 @@ public class Registro implements Serializable {
             this.id_registro = id;
     }
 
-    public Registro(Integer id_registro, String fecha, String hora_entrada, String hora_salida, String observaciones, String estado, Usuario usuario, Bloque bloque, Vehiculo vehiculo) {
+    public Registro(Integer id_registro, String condicion, String fecha, String hora_entrada, String hora_salida, String observaciones, String estado, Usuario usuario, Bloque bloque, Vehiculo vehiculo) {
         this.id_registro = id_registro;
+        this.condicion = condicion;
         this.fecha = fecha;
         this.hora_entrada = hora_entrada;
         this.hora_salida = hora_salida;
@@ -141,5 +145,15 @@ public class Registro implements Serializable {
 	public void setBloque(Bloque bloque) {
 		this.bloque = bloque;
 	}
+
+	public String getCondicion() {
+		return condicion;
+	}
+
+	public void setCondicion(String condicion) {
+		this.condicion = condicion;
+	}
+	
+	
 	
 }

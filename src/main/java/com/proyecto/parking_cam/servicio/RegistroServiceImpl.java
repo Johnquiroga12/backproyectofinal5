@@ -20,4 +20,9 @@ public class RegistroServiceImpl extends GenericServiceImpl<Registro, Integer> i
     public List<Registro> listarRegistroActivos() {
            return Repository.listarRegistroActivos();
     }
+
+    @Override
+    public List<Registro> findAllByEstado() {
+        return Repository.findAllByEstado("A");
+    }
 }

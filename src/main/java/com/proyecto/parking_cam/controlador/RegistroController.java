@@ -21,7 +21,9 @@ public class RegistroController {
     @GetMapping("/registro/listar")
     public ResponseEntity<List<Registro>> obtenerLista() {
         try {
-            return new ResponseEntity<>(registroService.listarRegistroActivos(), HttpStatus.OK);
+           // return new ResponseEntity<>(registroService.listarRegistroActivos(), HttpStatus.OK);
+            return new ResponseEntity<>(registroService.findAllByEstado(), HttpStatus.OK);
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

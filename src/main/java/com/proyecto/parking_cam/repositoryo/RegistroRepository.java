@@ -11,5 +11,6 @@ public interface RegistroRepository extends JpaRepository<Registro, Integer> {
 
     @Query(value = "SELECT * FROM registro v WHERE v.estado = 'A'", nativeQuery = true)
     List<Registro> listarRegistroActivos();
-    
+
+    List<Registro> findAllByEstado(String a);
 }

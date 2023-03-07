@@ -1,7 +1,9 @@
 package com.proyecto.parking_cam.controlador;
 
+import com.proyecto.parking_cam.modelo.Persona;
 import com.proyecto.parking_cam.modelo.Usuario;
 import com.proyecto.parking_cam.repositoryo.UsuarioRepository;
+import com.proyecto.parking_cam.servicio.PersonaService;
 import com.proyecto.parking_cam.servicio.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,19 +23,22 @@ public class UsuarioController {
     @Autowired
     UsuarioRepository rU;
 
+    @Autowired
+    private PersonaService personaService;
 
-    @PostMapping("/singin")
-    public Usuario IniciarSesion(@RequestBody Usuario usuario) throws Exception{
-        
+
+    @GetMapping("/singin/{cedula}/{password}")
+    public ResponseEntity<?> IniciarSesion(@PathVariable("cedula") String cedula, @PathVariable("password") String password) throws Exception{
         try{
-            
-            Usuario usr = rU.buscarRol(usuario.getUsername(), usuario.getPassword());
-            return usr;
+            Usuario usr = rU.findByUsernameAndPassword(cedula, password);
+            if(usr != null){
+                return new ResponseEntity<>(usr, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
         }catch(Exception e){
-            
-            System.out.println(e.toString());
-            return null;
-            
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     
@@ -111,6 +116,41 @@ public class UsuarioController {
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+        }
+    }
+
+    //Other methos-----------
+    @GetMapping("/usuario/search/update/{cedula}")
+    public ResponseEntity<Usuario> updateUser(@PathVariable("cedula") String cedula){
+        try {
+            Persona p = personaService.findByCedulaAndEstado(cedula, "A");
+            if(p != null){
+                return new ResponseEntity<>(usuServ.findUsuarioByPersona(p), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/usuario/user/update/{id_usuario}")
+    public ResponseEntity<Usuario> updateUser(@RequestBody Usuario usuario, @PathVariable("id_usuario") Integer id_usuario){
+        try {
+            Usuario up = usuServ.findById(id_usuario);
+            if(up != null){
+                up.setUsername(usuario.getUsername());
+                up.setPassword(usuario.getPassword());
+                up.setRol(usuario.getRol());
+                up.setFoto(usuario.getFoto());
+                up.setEstado(usuario.getEstado());
+                return new ResponseEntity<>(usuServ.save(up), HttpStatus.OK);
+
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

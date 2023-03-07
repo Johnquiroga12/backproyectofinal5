@@ -12,4 +12,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     @Query(value = "SELECT * FROM persona v WHERE v.estado = 'A'", nativeQuery = true)
     List<Persona> listarPersonasActivos();
+
+    public Persona findByCedulaAndEstado(String cedula, String estado);
+
+    List<Persona> findAllByEstado(String a);
 }

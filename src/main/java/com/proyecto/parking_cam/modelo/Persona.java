@@ -3,7 +3,7 @@ package com.proyecto.parking_cam.modelo;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Getter

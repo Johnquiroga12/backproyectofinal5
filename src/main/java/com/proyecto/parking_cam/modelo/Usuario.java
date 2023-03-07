@@ -25,6 +25,8 @@ public class Usuario implements Serializable {
 	@Column(name = "estado")
 	private String estado;
 
+	@Column(name = "foto", columnDefinition = "LONGBLOB")
+	private String foto;
 	//@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")

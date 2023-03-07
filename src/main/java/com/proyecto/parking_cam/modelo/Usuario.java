@@ -21,8 +21,6 @@ public class Usuario implements Serializable {
 	private String password;
 	@Column(name = "rol")
 	private String rol;
-        @Column(name = "foto")
-	private String foto;
 	@Column(name = "estado")
 	private String estado;
 
@@ -41,17 +39,14 @@ public class Usuario implements Serializable {
 
 	}
 
-    public Usuario(Integer id_usuario, String username, String password, String rol, String foto, String estado, Persona persona) {
-        this.id_usuario = id_usuario;
-        this.username = username;
-        this.password = password;
-        this.rol = rol;
-        this.foto = foto;
-        this.estado = estado;
-        this.persona = persona;
-    }
-
-	
+	public Usuario(Integer id_usuario, String username, String password, String rol, String estado, Persona persona) {
+		this.id_usuario = id_usuario;
+		this.username = username;
+		this.password = password;
+		this.rol = rol;
+		this.estado = estado;
+		this.persona = persona;
+	}
 
 	public Integer getId_usuario() {
 		return id_usuario;
@@ -84,15 +79,6 @@ public class Usuario implements Serializable {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-        public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-        
-        
 
 	public String getEstado() {
 		return estado;

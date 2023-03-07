@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 	private String password;
 	@Column(name = "rol")
 	private String rol;
-        @Column(name = "foto")
+	@Column(name = "foto", columnDefinition = "LONGBLOB")
 	private String foto;
 	@Column(name = "estado")
 	private String estado;

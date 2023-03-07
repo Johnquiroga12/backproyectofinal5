@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
 	private String password;
 	@Column(name = "rol")
 	private String rol;
-	@Column(name = "foto", columnDefinition = "LONGBLOB")
+        @Column(name = "foto")
 	private String foto;
 	@Column(name = "estado")
 	private String estado;

@@ -42,40 +42,7 @@ public class Bloque implements Serializable {
     }
 
     
-       
-        
-        
-    public Integer getId_bloque() {
-        return id_bloque;
-    }
-
-    public void setId_bloque(Integer id_bloque) {
-        this.id_bloque = id_bloque;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
     
-    public String getPlazas() {
-        return plazas;
-    }
-
-    public void setPlazas(String plazas) {
-        this.plazas = plazas;
-    }
-    
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     
 
 }

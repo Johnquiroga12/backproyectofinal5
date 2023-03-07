@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyecto.parking_cam.modelo.Vehiculo;
 import com.proyecto.parking_cam.servicio.VehiculoService;
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class vehiculoController {

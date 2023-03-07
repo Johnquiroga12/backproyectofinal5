@@ -30,7 +30,7 @@ public class vehiculoController {
     @GetMapping("/vehiculo/listar")
     public ResponseEntity<List<Vehiculo>> obtenerLista() {
         try {
-            return new ResponseEntity<>(vehServ.listarVehiculosActivos(), HttpStatus.OK);
+            return new ResponseEntity<>(vehServ.findAllByEstado(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

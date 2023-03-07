@@ -21,7 +21,7 @@ public class BloqueController {
     @GetMapping("/bloque/listar")
     public ResponseEntity<List<Bloque>> obtenerLista() {
         try {
-            return new ResponseEntity<>(bloServ.listarBloquesActivos(), HttpStatus.OK);
+            return new ResponseEntity<>(bloServ.findAllByEstado(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

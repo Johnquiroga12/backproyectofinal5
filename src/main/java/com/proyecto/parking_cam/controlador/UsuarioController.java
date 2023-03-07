@@ -45,7 +45,7 @@ public class UsuarioController {
     @GetMapping("/usuario/listar")
     public ResponseEntity<List<Usuario>> obtenerLista() {
         try {
-            return new ResponseEntity<>(usuServ.listarUsuariosActivos(), HttpStatus.OK);
+            return new ResponseEntity<>(usuServ.findAllByEstado(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

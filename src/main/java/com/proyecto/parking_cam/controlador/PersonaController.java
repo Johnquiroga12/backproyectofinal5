@@ -22,7 +22,7 @@ public class PersonaController {
     @GetMapping("/persona/listar")
     public ResponseEntity<List<Persona>> obtenerLista() {
         try {
-            return new ResponseEntity<>(perServ.findAllByEstado("A"), HttpStatus.OK);
+            return new ResponseEntity<>(perServ.findAllByEstado(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

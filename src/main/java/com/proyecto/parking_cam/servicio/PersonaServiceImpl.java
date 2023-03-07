@@ -20,10 +20,6 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
         return Repository;
     }
 
-    @Override
-    public List<Persona> listarPersonasActivos() {
-           return Repository.listarPersonasActivos();
-    }
 
     @Override
     public Persona findByCedulaAndEstado(String cedula, String estado) {
@@ -31,8 +27,10 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
     }
 
     @Override
-    public List<Persona> findAllByEstado(String a) {
-        return Repository.findAllByEstado(a);
+    public List<Persona> findAllByEstado() {
+        return Repository.findAllByEstado("A");
     }
 
+
 }
+

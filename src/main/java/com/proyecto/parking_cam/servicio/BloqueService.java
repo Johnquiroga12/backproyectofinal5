@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface BloqueService extends GenericService<Bloque, Integer>{
 
-    List<Bloque> listarBloquesActivos();
+    List<Bloque> findAllByEstado();
+
 }

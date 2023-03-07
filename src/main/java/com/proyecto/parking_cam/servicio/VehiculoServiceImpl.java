@@ -22,13 +22,13 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
         return Repository;
     }
 
-    @Override
-    public List<Vehiculo> listarVehiculosActivos() {
-        return Repository.listarVehiculosActivos();
-    }
-
 	@Override
 	public Vehiculo findByPlaca(String placa) {
 		return Repository.findByPlaca(placa);
 	}
+
+    @Override
+    public List<Vehiculo> findAllByEstado() {
+        return Repository.findAllByEstado("A");
+    }
 }

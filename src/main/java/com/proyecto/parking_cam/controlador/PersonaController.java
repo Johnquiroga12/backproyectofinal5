@@ -22,7 +22,7 @@ public class PersonaController {
     @GetMapping("/persona/listar")
     public ResponseEntity<List<Persona>> obtenerLista() {
         try {
-            return new ResponseEntity<>(perServ.listarPersonasActivos(), HttpStatus.OK);
+            return new ResponseEntity<>(perServ.findAllByEstado("A"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -86,6 +86,22 @@ public class PersonaController {
             }catch (Exception e){
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
+        }
+    }
+
+    //Metodos para la verificasion de la cedula para el cambio de la contraseña..
+    @GetMapping("/persona/search/cedula/update/{cedula}")
+    public ResponseEntity<Persona> searchCedulaChangePassword(@PathVariable("cedula") String cedula){
+        try {
+            Persona p = perServ.findByCedulaAndEstado(cedula, "A");
+            if(p != null){
+                return new ResponseEntity<>(p, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

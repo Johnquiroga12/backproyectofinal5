@@ -25,4 +25,14 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
            return Repository.listarPersonasActivos();
     }
 
+    @Override
+    public Persona findByCedulaAndEstado(String cedula, String estado) {
+        return Repository.findByCedulaAndEstado(cedula, estado);
+    }
+
+    @Override
+    public List<Persona> findAllByEstado(String a) {
+        return Repository.findAllByEstado(a);
+    }
+
 }

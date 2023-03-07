@@ -28,4 +28,14 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
         return usuarioRepository.search(filtro, filter);  
     }
 
+    @Override
+    public Usuario findUsuarioByPersona(Persona p) {
+        return usuarioRepository.findUsuarioByPersona(p);
+    }
+
+    @Override
+    public Usuario findByUsernameAndPassword(String ci, String pas) {
+        return usuarioRepository.findByUsernameAndPassword(ci, pas);
+    }
+
 }

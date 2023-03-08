@@ -1,14 +1,10 @@
 package com.proyecto.parking_cam.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-@Getter
-@Setter
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "persona")

@@ -1,12 +1,8 @@
 package com.proyecto.parking_cam.modelo;
 
-import lombok.Getter;
-import lombok.Setter;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {

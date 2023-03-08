@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -103,5 +104,16 @@ public class PersonaController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    
+    @GetMapping("/persona/resumen/data")
+    public ResponseEntity<Map<String, Object>> obtenerResumen() {
+        try {
+            Map<String, Object> resumen = perServ.getAllByNumeros();
+            return new ResponseEntity<>(resumen, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }

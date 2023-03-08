@@ -1,6 +1,5 @@
 package com.proyecto.parking_cam.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
@@ -27,10 +26,19 @@ public class Usuario implements Serializable {
 
 	@Column(name = "foto", columnDefinition = "LONGBLOB")
 	private String foto;
+	
 	//@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
 	private Persona persona;
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Usuario() {
 

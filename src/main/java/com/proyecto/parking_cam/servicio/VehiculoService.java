@@ -9,6 +9,8 @@ public interface VehiculoService extends GenericService<Vehiculo, Integer>{
 
     Vehiculo findByPlaca(String placa);
     List<Vehiculo> findAllByEstado();
+    
+    Vehiculo findByTicket(Integer placa);
 
 
 }

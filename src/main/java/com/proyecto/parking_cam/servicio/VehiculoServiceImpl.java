@@ -32,4 +32,9 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
 
         return Repository.findAllByEstado("A");
     }
+    
+    @Override
+	public Vehiculo findByTicket(Integer ticket) {
+		return Repository.findByTicket(ticket);
+	}
 }

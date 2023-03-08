@@ -105,6 +105,15 @@ public class vehiculoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @GetMapping("/vehiculo/ticket/{ticket}")
+    public ResponseEntity<Vehiculo> search2(@PathVariable("ticket") Integer ticket) {
+        try {
+            return new ResponseEntity<>(vehServ.findByTicket(ticket), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
     

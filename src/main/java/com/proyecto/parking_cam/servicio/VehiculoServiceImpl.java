@@ -1,5 +1,6 @@
 package com.proyecto.parking_cam.servicio;
 
+import com.proyecto.parking_cam.modelo.Registro;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,8 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
 		return Repository.findByPlaca(placa);
 	}
 
-    @Override
-<<<<<<< Updated upstream
     public List<Vehiculo> findAllByEstado() {
+
         return Repository.findAllByEstado("A");
-=======
-    public List<Vehiculo> findAllByEstado(String a) {
-        return Repository.findAllByEstado(a);
->>>>>>> Stashed changes
     }
 }

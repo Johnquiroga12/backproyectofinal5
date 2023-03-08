@@ -21,9 +21,10 @@ public class BloqueServiceImpl extends GenericServiceImpl<Bloque, Integer> imple
     }
 
     @Override
-    public List<Bloque> findAllByEstado(String a) {
-        return Repository.findAllByEstado(a);
+    public List<Bloque> listarBloquesActivos() {
+        return null;
     }
+
 }
 
 

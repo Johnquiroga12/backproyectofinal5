@@ -19,8 +19,6 @@ public Usuario search(@Param("filtro") String filtro, @Param("filter") String fi
 
     public Usuario findUsuarioByPersona(Persona p);
 
-    List<Usuario> findAllByEstado(String a);
-
     //Metodo para el login
     public Usuario findByUsernameAndPassword(String ci, String pas);
 }

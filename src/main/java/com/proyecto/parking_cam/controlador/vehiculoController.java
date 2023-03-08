@@ -30,11 +30,9 @@ public class vehiculoController {
     @GetMapping("/vehiculo/listar")
     public ResponseEntity<List<Vehiculo>> obtenerLista() {
         try {
-<<<<<<< Updated upstream
+
             return new ResponseEntity<>(vehServ.findAllByEstado(), HttpStatus.OK);
-=======
-            return new ResponseEntity<>(vehServ.findAllByEstado("A"), HttpStatus.OK);
->>>>>>> Stashed changes
+
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

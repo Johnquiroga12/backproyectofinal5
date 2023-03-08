@@ -45,7 +45,11 @@ public class UsuarioController {
     @GetMapping("/usuario/listar")
     public ResponseEntity<List<Usuario>> obtenerLista() {
         try {
+<<<<<<< Updated upstream
             return new ResponseEntity<>(usuServ.findAllByEstado(), HttpStatus.OK);
+=======
+            return new ResponseEntity<>(usuServ.findAllByEstado("A"), HttpStatus.OK);
+>>>>>>> Stashed changes
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

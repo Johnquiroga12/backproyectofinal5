@@ -10,6 +10,9 @@ public interface UsuarioService extends GenericService<Usuario, Integer>{
     public Usuario search(String filtro,String filter) throws Exception;
 
     public Usuario findUsuarioByPersona(Persona p);
+    List<Usuario> findAllByEstado(String a);
+
+
 
     List<Usuario> findAllByEstado();
 

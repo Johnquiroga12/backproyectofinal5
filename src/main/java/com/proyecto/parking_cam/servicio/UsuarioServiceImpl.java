@@ -30,9 +30,14 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Integer> imp
     }
 
     @Override
+<<<<<<< Updated upstream
     public List<Usuario> findAllByEstado() {
 
         return usuarioRepository.findAllByEstado("A");
+=======
+    public List<Usuario> findAllByEstado(String a) {
+        return usuarioRepository.findAllByEstado(a);
+>>>>>>> Stashed changes
     }
 
     @Override

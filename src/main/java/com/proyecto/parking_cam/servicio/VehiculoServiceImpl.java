@@ -28,7 +28,12 @@ public class VehiculoServiceImpl extends GenericServiceImpl<Vehiculo, Integer> i
 	}
 
     @Override
+<<<<<<< Updated upstream
     public List<Vehiculo> findAllByEstado() {
         return Repository.findAllByEstado("A");
+=======
+    public List<Vehiculo> findAllByEstado(String a) {
+        return Repository.findAllByEstado(a);
+>>>>>>> Stashed changes
     }
 }

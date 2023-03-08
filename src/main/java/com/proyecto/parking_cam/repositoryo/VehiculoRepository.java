@@ -1,6 +1,10 @@
 package com.proyecto.parking_cam.repositoryo;
 
+<<<<<<< Updated upstream
 import com.proyecto.parking_cam.modelo.Registro;
+=======
+import com.proyecto.parking_cam.modelo.Persona;
+>>>>>>> Stashed changes
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -5,6 +5,8 @@ import com.proyecto.parking_cam.modelo.Registro;
 import com.proyecto.parking_cam.repositoryo.PersonaRepository;
 import com.proyecto.parking_cam.repositoryo.RegistroRepository;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,11 @@ public class PersonaServiceImpl extends GenericServiceImpl<Persona, Integer> imp
     @Override
     public List<Persona> findAllByEstado(String a) {
         return Repository.findAllByEstado(a);
+    }
+
+    @Override
+    public Map<String, Object> getAllByNumeros() {
+        return Repository.getAllByNumeros();
     }
 
 }
